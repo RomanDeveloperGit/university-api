@@ -1,9 +1,11 @@
 package ru.university.demo.university;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -16,9 +18,10 @@ public class UniversityModel {
   private Long id;
 
   @Column(unique = true)
-  @NotBlank
+  @Size(min = 3, max = 255)
   private String name;
 
-  @NotNull
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  @PastOrPresent
   private LocalDate foundationDate;
 }
