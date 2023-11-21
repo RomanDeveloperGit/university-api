@@ -1,6 +1,7 @@
 package ru.university.demo.university;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.university.demo.university.dto.CreateUniversityDTO;
@@ -27,8 +28,8 @@ public class UniversityServiceImpl implements UniversityService {
   @Override
   public UniversityModel createUniversity(CreateUniversityDTO dto) {
     UniversityModel model = new UniversityModel();
-    model.setName(dto.name());
-    model.setFoundationDate(dto.foundationDate());
+    model.setName(dto.getName());
+    model.setFoundationDate(dto.getFoundationDate());
 
     return repository.save(model);
   };
@@ -38,7 +39,7 @@ public class UniversityServiceImpl implements UniversityService {
     UniversityModel existingUniversity = repository.findById(id)
       .orElseThrow(() -> new EntityNotFoundException("University not found with id: " + id));
 
-    existingUniversity.setName(dto.newName());
+    existingUniversity.setName(dto.getNewName());
 
     return repository.save(existingUniversity);
   };
