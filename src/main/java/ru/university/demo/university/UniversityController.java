@@ -1,11 +1,12 @@
 package ru.university.demo.university;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.university.demo.university.dto.CreateUniversityDTO;
 import ru.university.demo.university.dto.UpdateUniversityDTO;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,12 +27,12 @@ public class UniversityController {
   }
 
   @PostMapping()
-  UniversityModel createUniversity(@RequestBody CreateUniversityDTO dto) {
+  UniversityModel createUniversity(@Valid @RequestBody CreateUniversityDTO dto) {
     return service.createUniversity(dto);
   }
 
   @PatchMapping("/{id}")
-  UniversityModel updateUniversity(@PathVariable Long id, @RequestBody UpdateUniversityDTO dto) {
+  UniversityModel updateUniversity(@PathVariable Long id, @Valid @RequestBody UpdateUniversityDTO dto) {
     return service.updateUniversity(id, dto);
   }
 
