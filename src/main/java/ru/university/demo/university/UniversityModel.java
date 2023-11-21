@@ -15,6 +15,7 @@ public class UniversityModel {
   @GeneratedValue
   private Long id;
 
+  @Column(unique = true)
   @NotBlank
   private String name;
 
