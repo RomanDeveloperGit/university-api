@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.university.demo.business.university.dto.CreateUniversityDTO;
 import ru.university.demo.business.university.dto.UpdateUniversityDTO;
 
-import java.util.List;
 import java.util.Optional;
-
-// swagger
 
 @RestController
 @AllArgsConstructor
