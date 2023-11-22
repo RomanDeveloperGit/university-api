@@ -1,4 +1,4 @@
-package ru.university.demo.university;
+package ru.university.demo.business.university;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

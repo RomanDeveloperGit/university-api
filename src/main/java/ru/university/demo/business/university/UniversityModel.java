@@ -1,6 +1,5 @@
-package ru.university.demo.university;
+package ru.university.demo.business.university;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;

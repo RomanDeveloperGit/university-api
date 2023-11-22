@@ -1,14 +1,19 @@
-package ru.university.demo.university;
+package ru.university.demo.business.university;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
-import ru.university.demo.university.dto.CreateUniversityDTO;
-import ru.university.demo.university.dto.UpdateUniversityDTO;
+import ru.university.demo.business.university.dto.CreateUniversityDTO;
+import ru.university.demo.business.university.dto.UpdateUniversityDTO;
 
 import java.util.List;
 import java.util.Optional;
+
+// swagger
 
 @RestController
 @AllArgsConstructor
@@ -17,8 +22,12 @@ public class UniversityController {
   private final UniversityService service;
 
   @GetMapping()
-  List<UniversityModel> getUniversityList() {
-    return service.getUniversityList();
+  Page<UniversityModel> getUniversityList(
+    @RequestParam(value = "page", defaultValue = "1") @Min(1) Integer page,
+    @RequestParam(value = "limit", defaultValue = "10") @Min(1) @Max(100) Integer limit,
+    @RequestParam(value = "sort", defaultValue = "ID_ASC") UniversitySort sort
+  ) {
+    return service.getUniversityList(PageRequest.of(page - 1, limit, sort.getSortValue()));
   }
 
   @GetMapping("/{id}")

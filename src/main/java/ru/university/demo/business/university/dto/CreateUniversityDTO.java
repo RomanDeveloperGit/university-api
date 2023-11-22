@@ -1,4 +1,4 @@
-package ru.university.demo.university.dto;
+package ru.university.demo.business.university.dto;
 
 import java.time.LocalDate;
 

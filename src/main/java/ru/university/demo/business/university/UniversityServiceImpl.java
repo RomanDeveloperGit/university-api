@@ -1,13 +1,13 @@
-package ru.university.demo.university;
+package ru.university.demo.business.university;
 
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.university.demo.university.dto.CreateUniversityDTO;
-import ru.university.demo.university.dto.UpdateUniversityDTO;
+import ru.university.demo.business.university.dto.CreateUniversityDTO;
+import ru.university.demo.business.university.dto.UpdateUniversityDTO;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,8 +16,8 @@ public class UniversityServiceImpl implements UniversityService {
   private final UniversityRepository repository;
 
   @Override
-  public List<UniversityModel> getUniversityList() {
-    return repository.findAll();
+  public Page<UniversityModel> getUniversityList(Pageable pageable) {
+    return repository.findAll(pageable);
   };
 
   @Override
