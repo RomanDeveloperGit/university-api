@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -20,7 +19,7 @@ public class UniversityModel {
   @Size(min = 3, max = 255)
   private String name;
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  @Temporal(TemporalType.DATE)
   @PastOrPresent
   private LocalDate foundationDate;
 }
